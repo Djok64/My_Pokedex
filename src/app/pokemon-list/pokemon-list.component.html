@@ -1,6 +1,5 @@
-<p>pokemon-list works!</p>
-<ul>
-  <li *ngFor="let pokemon of pokemonList">
-    {{ pokemon.name }}
-  </li>
-</ul>
+<div *ngFor="let pokemon of pokemonList">
+  <h2>{{ pokemon.name }}</h2>
+  <img [src]="pokemon.image" alt="{{ pokemon.name }} Image" />
+  <p>Type(s): {{ pokemon.types.join(", ") }}</p>
+</div>

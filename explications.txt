@@ -1,0 +1,20 @@
+//Explication du proxy de proxy.conf.json
+
+{
+  "/api": {
+    "target": "https://pokeapi.co",
+    "secure": false,
+    "changeOrigin": true
+  }
+}
+Explication :
+
+"/api" : C'est le chemin d'accès pour lequel le proxy sera appliqué. Toutes les requêtes envoyées à votre serveur de développement Angular qui commencent par /api seront redirigées vers un autre serveur.
+
+"target": "https://pokeapi.co" : Cela spécifie l'URL cible vers laquelle les requêtes commençant par /api seront redirigées. Dans votre cas, il s'agit de l'API PokeAPI.
+
+"secure": false : Ce paramètre est utilisé pour indiquer si le proxy doit utiliser une connexion sécurisée (HTTPS). Dans certains cas, si vous proxy vers un serveur HTTPS, vous pourriez vouloir le mettre à true. Cependant, si vous rencontrez des problèmes de certificat SSL pendant le développement, vous pouvez le définir sur false.
+
+"changeOrigin": true : Ce paramètre est crucial pour les requêtes CORS. Il modifie l'origine de l'hôte de la requête pour correspondre à la cible du proxy. Cela peut aider à éviter les problèmes liés aux restrictions de la politique de la même origine (same-origin policy).
+
+Ce fichier est généralement utilisé en développement pour contourner les restrictions CORS ou pour simuler un environnement où le frontend et le backend sont servis depuis le même domaine.
