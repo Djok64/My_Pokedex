@@ -1,24 +1,19 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class PokemonService {
-  private baseUrl = 'https://pokeapi.co/api/v2/pokemon';
+  private apiUrl = '/api/v2';
 
   constructor(private http: HttpClient) {}
 
-  // Récupérer une liste de Pokémons avec pagination
-  getPokemons(limit: number, offset: number): Observable<any> {
-    console.log(`Fetching Pokemons: Limit=${limit}, Offset=${offset}`);
-    return this.http.get(`${this.baseUrl}?limit=${limit}&offset=${offset}`);
+  getPokemonList() {
+    return this.http.get(`${this.apiUrl}/pokemon`);
   }
 
-  // Obtenir les détails d'un Pokémon spécifique par son ID
-  getPokemonDetail(id: number): Observable<any> {
-    console.log(`Fetching Pokemon Details for ID: ${id}`);
-    return this.http.get(`${this.baseUrl}/${id}`);
+  getPokemonDetails(id: number) {
+    return this.http.get(`${this.apiUrl}/pokemon/${id}`);
   }
 }
