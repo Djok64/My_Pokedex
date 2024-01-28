@@ -164,3 +164,16 @@ types: details.types.map((type) => type.type.name), : Nous ajoutons les types du
 
 return forkJoin(results); : Enfin, nous utilisons forkJoin pour exécuter toutes les requêtes en parallèle et obtenir les détails de tous les Pokémon en une seule réponse.
 
+
+//Pagination pokemon list dans PokemonListComponent
+
+1.Initialisation des données dans ngOnInit() : Au moment de la création du composant (ngOnInit), les données des Pokémon sont chargées en utilisant this.pokemonService.getAllPokemonDetails(). Ensuite, nous appelons this.paginatePokemonList() pour paginer les données dès le début.
+
+2.Méthode paginatePokemonList() : Cette méthode calcule quels Pokémon doivent être affichés sur la page courante. Elle utilise this.currentPage pour déterminer la page actuelle, this.pageSize pour le nombre de Pokémon par page, et this.pokemonList pour obtenir toutes les données des Pokémon. Ensuite, elle stocke les Pokémon à afficher dans this.paginatedPokemon et calcule également le nombre total de pages (this.totalPages).
+
+3.Méthodes previousPage() et nextPage() : Ces méthodes gèrent la pagination. Lorsque vous cliquez sur "Précédent" (previousPage()), elles vérifient d'abord si vous êtes déjà sur la première page (this.currentPage === 1). Si ce n'est pas le cas, elles décrémentent this.currentPage d'une unité et appellent this.paginatePokemonList() pour mettre à jour la liste paginée. De même, lorsque vous cliquez sur "Suivant" (nextPage()), elles vérifient si vous êtes déjà sur la dernière page (this.currentPage === this.totalPages) ; si ce n'est pas le cas, elles incrémente this.currentPage d'une unité et appellent this.paginatePokemonList() pour mettre à jour la liste paginée.
+
+4.Boutons "Précédent" et "Suivant" : Les boutons "Précédent" et "Suivant" sont maintenant correctement activés et désactivés en fonction de la page actuelle. Le bouton "Précédent" est désactivé sur la première page ([disabled]="currentPage === 1") car il n'y a pas de page précédente, et le bouton "Suivant" est désactivé sur la dernière page ([disabled]="currentPage === totalPages") car il n'y a pas de page suivante.
+
+5.Template HTML : Le template HTML n'a pas été modifié, mais il est important de noter que le contenu de *ngFor utilise maintenant paginatedPokemon au lieu de pokemonList, ce qui garantit que seuls les Pokémon de la page courante sont affichés.
+

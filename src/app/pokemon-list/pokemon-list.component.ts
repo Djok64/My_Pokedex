@@ -17,9 +17,11 @@ import { Router } from '@angular/router';
   styleUrls: ['./pokemon-list.component.css'], // Chemin vers le fichier de styles CSS.
 })
 export class PokemonListComponent implements OnInit {
-  // Propriété pour stocker la liste des Pokémon.
-  pokemonList: Pokemon[] = [];
-
+  pokemonList: Pokemon[] = []; // Propriété pour stocker la liste des Pokémon.
+  currentPage: number = 1; // Page actuelle
+  pageSize: number = 10; // Nombre de Pokémon par page
+  paginatedPokemon: Pokemon[] = []; // Tableau pour stocker les Pokémon à afficher sur la page courante.
+  totalPages: number = 1; // Nombre total de pages de Pokémon.
   // Injection du service PokemonService dans le constructeur.
   constructor(private pokemonService: PokemonService, private router: Router) {}
 
@@ -32,10 +34,40 @@ export class PokemonListComponent implements OnInit {
       // Vérification si les données reçues sont un tableau.
       if (Array.isArray(data)) {
         this.pokemonList = data; // Stockage des données dans la propriété pokemonList.
+        this.paginatePokemonList(); // Ajout pour paginer dès le début.
       } else {
         console.error('Données Pokémon non valides.'); // Affichage d'une erreur si les données ne sont pas un tableau.
       }
     });
+  }
+
+  // Méthode pour paginer la liste des Pokémon en fonction de la page actuelle.
+  paginatePokemonList(): void {
+    // Calcul du début et de la fin de la plage de Pokémon à afficher.
+    const startIndex = (this.currentPage - 1) * this.pageSize;
+    const endIndex = startIndex + this.pageSize;
+
+    // Utilisation de la méthode slice() pour extraire la sous-liste de Pokémon paginée.
+    this.paginatedPokemon = this.pokemonList.slice(startIndex, endIndex);
+
+    // Calcul du nombre total de pages en utilisant la longueur totale de la liste de Pokémon et la taille de la page.
+    this.totalPages = Math.ceil(this.pokemonList.length / this.pageSize);
+  }
+
+  // Méthode pour gérer le bouton "Précédent" et mettre à jour la liste paginée.
+  previousPage(): void {
+    if (this.currentPage > 1) {
+      this.currentPage--; // Décrémente le numéro de page actuel s'il n'est pas déjà à la première page.
+      this.paginatePokemonList(); // Appelle la méthode pour mettre à jour la liste paginée.
+    }
+  }
+
+  // Méthode pour gérer le bouton "Suivant" et mettre à jour la liste paginée.
+  nextPage(): void {
+    if (this.currentPage < this.totalPages) {
+      this.currentPage++; // Incrémente le numéro de page actuel s'il n'est pas déjà à la dernière page.
+      this.paginatePokemonList(); // Appelle la méthode pour mettre à jour la liste paginée.
+    }
   }
   // Méthode pour gérer le clic sur une carte Pokémon.
   goToPokemonDetails(pokemonId: number): void {
