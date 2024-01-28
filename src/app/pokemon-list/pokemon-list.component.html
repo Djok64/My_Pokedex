@@ -4,6 +4,8 @@
   <div
     *ngFor="let pokemon of paginatedPokemon"
     (click)="goToPokemonDetails(pokemon.id)"
+    [ngClass]="getTypeClass(pokemon.types)"
+    class="pokemon-card"
   >
     <!-- Boucle sur chaque Pokémon et affichage de ses détails. -->
     <h2>{{ pokemon.name }}</h2>
@@ -18,12 +20,18 @@
 
 <div class="pagination">
   <button (click)="previousPage()" [disabled]="currentPage === 1">
-    Précédent
+    <img
+      src="../../assets/iconePrecedent.png"
+      alt="pokeball avec une fleche suivant"
+    />
   </button>
   <!-- Utilisation de (click) pour déclencher la méthode previousPage() lorsque le bouton est cliqué. -->
   <!-- Utilisation de [disabled] pour désactiver le bouton s'il n'y a pas de page précédente. -->
   <button (click)="nextPage()" [disabled]="currentPage === totalPages">
-    Suivant
+    <img
+      src="../../assets/iconeSuivantdefi.png"
+      alt="pokeball avec une fleche precedent"
+    />
   </button>
   <!-- Utilisation de (click) pour déclencher la méthode nextPage() lorsque le bouton est cliqué. -->
   <!-- Utilisation de [disabled] pour désactiver le bouton s'il n'y a pas de page suivante. -->

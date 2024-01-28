@@ -2,16 +2,17 @@
 
 // Importation des modules nécessaires depuis le package Angular core et Angular router.
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router'; // Importe RouterOutlet pour la navigation entre les routes.
-import { PokemonListComponent } from './pokemon-list/pokemon-list.component'; // Importe le composant PokemonListComponent.
+import { Router, RouterOutlet } from '@angular/router'; // Importe RouterOutlet pour la navigation entre les routes.
+import { PokemonListComponent } from './pokemon-list/pokemon-list.component';
+import { NavbarComponent } from './navbar/navbar.component'; // Importe le composant PokemonListComponent.
 
 // Décorateur Component pour définir les métadonnées du composant.
 @Component({
   selector: 'app-root', // Le sélecteur CSS pour utiliser ce composant. <app-root></app-root> peut être utilisé dans le HTML.
-  standalone: true, // Indique que le composant est autonome (standalone), une nouvelle fonctionnalité dans Angular.
-  imports: [RouterOutlet], // Importe RouterOutlet dans le composant, ce qui permet d'afficher les composants de route.
+  standalone: true, // Importe RouterOutlet dans le composant, ce qui permet d'afficher les composants de route.
   templateUrl: './app.component.html', // Chemin vers le fichier de template HTML pour ce composant.
-  styleUrls: ['./app.component.css'], // Chemin vers le fichier de styles CSS pour ce composant.
+  styleUrls: ['./app.component.css'],
+  imports: [RouterOutlet, NavbarComponent],
 })
 export class AppComponent {
   title = 'MyPokedex'; // Propriété du composant, utilisée pour stocker le titre de l'application.
