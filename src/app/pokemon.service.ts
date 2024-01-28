@@ -55,13 +55,16 @@ export class PokemonService {
       switchMap((pokemonListData) => {
         // Création d'un tableau de requêtes pour obtenir les détails de chaque Pokémon.
         const results = pokemonListData.results.map((pokemon) => {
+          // Obtention de l'ID du Pokémon à partir de l'URL de l'API.
           const pokemonId = this.getPokemonIdFromUrl(pokemon.url);
+          // Appel à la méthode getPokemonDetails() pour obtenir les détails du Pokémon.
           return this.getPokemonDetails(pokemonId).pipe(
             map((details) => ({
-              id: pokemonId,
-              name: details.name,
-              image: details.sprites.front_default,
-              types: details.types.map((type) => type.type.name),
+              // Mapping des détails du Pokémon dans un objet Pokemon.
+              id: pokemonId, // ID du Pokémon
+              name: details.name, // Nom du Pokémon
+              image: details.sprites.front_default, // URL de l'image du Pokémon
+              types: details.types.map((type) => type.type.name), // Types du Pokémon
             }))
           );
         });

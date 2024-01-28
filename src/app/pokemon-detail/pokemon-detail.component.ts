@@ -15,8 +15,8 @@ import { CommonModule } from '@angular/common'; // Importe CommonModule, qui fou
   styleUrls: ['./pokemon-detail.component.css'], // Chemin vers le fichier CSS pour les styles du composant.
 })
 export class PokemonDetailComponent implements OnInit {
-  pokemon: any = null; // Propriété pour stocker les détails du Pokémon récupérés.
-  typesAsString: string = ''; // Ajout d'une nouvelle propriété pour les types
+  pokemon: any = null; // Variable type any pour stocker les détails du Pokémon récupérés.
+  typesAsString: string = ''; // Ajout varible et  d'une nouvelle propriété pour les types
 
   // Constructeur pour injecter les dépendances.
   constructor(
