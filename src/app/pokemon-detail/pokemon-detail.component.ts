@@ -16,6 +16,7 @@ import { CommonModule } from '@angular/common'; // Importe CommonModule, qui fou
 })
 export class PokemonDetailComponent implements OnInit {
   pokemon: any = null; // Propriété pour stocker les détails du Pokémon récupérés.
+  typesAsString: string = ''; // Ajout d'une nouvelle propriété pour les types
 
   // Constructeur pour injecter les dépendances.
   constructor(
@@ -30,6 +31,10 @@ export class PokemonDetailComponent implements OnInit {
     // Appelle le service PokemonService pour obtenir les détails du Pokémon.
     this.pokemonService.getPokemonDetails(id).subscribe((data: any) => {
       this.pokemon = data; // Stocke les détails du Pokémon dans la propriété pokemon.
+      this.typesAsString = data.types
+        .map((t: { type: { name: any } }) => t.type.name)
+        .join(', '); // Transformation des types en chaîne de caractères
+      console.log(data);
     });
   }
 }

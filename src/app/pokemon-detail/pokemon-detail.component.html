@@ -1,1 +1,5 @@
-<p>pokemon-detail works!</p>
+<div *ngIf="pokemon">
+  <h2>{{ pokemon.name }}</h2>
+  <img [src]="pokemon.sprites.front_default" alt="{{ pokemon.name }} Image" />
+  <p>Type(s): {{ typesAsString }}</p>
+</div>

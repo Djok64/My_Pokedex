@@ -46,3 +46,35 @@ export class PokemonService {
 
 En résumé, vous pouvez accéder à PokemonDetails dans PokemonService sans l'exporter car ils sont dans le même fichier. Si vous avez besoin de PokemonDetails en dehors de pokemon.service.ts, vous devez l'exporter et l'importer là où vous en avez besoin.
 
+
+//Dans Pokemon-details-component :
+
+
+this.pokemonService.getPokemonDetails(id).subscribe((data: any) => {
+  this.pokemon = data;
+  this.typesAsString = data.types
+    .map((t: { type: { name: any } }) => t.type.name)
+    .join(', ');
+  console.log(data);
+});
+
+//Explication detaillé :
+
+1.Appel de Service :
+
+this.pokemonService.getPokemonDetails(id) : Cette ligne appelle la méthode getPokemonDetails de votre service PokemonService. Elle envoie une requête HTTP pour obtenir les détails d'un Pokémon spécifique, identifié par son id.
+
+2.Observable et Souscription :
+
+.subscribe((data: any) => { ... }) : Ici, vous vous abonnez à l'Observable retourné par getPokemonDetails. Les Observables sont un concept clé dans RxJS (une bibliothèque pour la programmation réactive en JavaScript). Ils représentent des flux de données asynchrones. Lorsque les données arrivent (dans ce cas, les détails du Pokémon), le code à l'intérieur de .subscribe est exécuté.
+data: any : data est l'objet contenant les détails du Pokémon retournés par l'API. Le type any est utilisé ici pour une flexibilité maximale, mais dans un cas idéal, vous devriez définir un type plus spécifique pour une meilleure sécurité de type.
+
+3.Traitement des Données :
+
+this.pokemon = data; : Cette ligne stocke les données reçues dans la propriété pokemon du composant. Cela permet au template HTML du composant d'accéder et d'afficher ces données.
+this.typesAsString = data.types.map((t: { type: { name: any } }) => t.type.name).join(', '); : Cette ligne transforme la liste des types du Pokémon en une chaîne de caractères. Chaque type est un objet dans data.types, et vous accédez au nom de chaque type avec t.type.name. La méthode .map() crée un nouveau tableau contenant uniquement les noms des types. Ensuite, .join(', ') concatène tous ces noms en une seule chaîne de caractères, séparés par des virgules.
+
+4.Affichage des Données :
+
+console.log(data); : Cette ligne affiche les données reçues dans la console du navigateur, ce qui est utile pour le débogage.
+En résumé, ce bloc de code récupère les détails d'un Pokémon spécifique de l'API, traite ces données pour les rendre utilisables dans le template du composant, et affiche les données dans la console pour le débogage.
