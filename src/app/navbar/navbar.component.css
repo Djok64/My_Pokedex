@@ -1,0 +1,46 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
+
+.navbar {
+  display: flex;
+  align-items: center;
+  background-color: #da0c32; /* Rouge du logo */
+  color: white;
+  justify-content: space-between;
+  padding: 0 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Ombre subtile */
+}
+
+.navbar-logo {
+  height: 80px; /* Ajustez la taille selon vos besoins */
+  width: auto;
+}
+
+.navbar-link {
+  color: white;
+  text-decoration: none;
+  font-size: 1.5em;
+  padding: 10px 20px;
+  font-family: "Roboto", sans-serif; /* Police secondaire pour le texte */
+  transition: background-color 0.3s; /* Transition pour effet de survol */
+}
+
+.navbar-link:hover {
+  background-color: rgba(255, 255, 255, 0.2); /* Effet de survol */
+}
+
+h1 {
+  font-size: 2em;
+  font-family: "Pokémon Solid", sans-serif; /* Police principale pour les titres */
+  margin: 0; /* Enlève la marge par défaut */
+}
+
+/* Responsive navbar */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+  }
+
+  .navbar-link {
+    padding: 10px;
+  }
+}

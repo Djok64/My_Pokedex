@@ -69,6 +69,14 @@ export class PokemonListComponent implements OnInit {
       this.paginatePokemonList(); // Appelle la méthode pour mettre à jour la liste paginée.
     }
   }
+  getTypeClass(types: string[] | string) {
+    // Vérifie si le Pokémon a deux types
+    if (types.length === 2) {
+      return `type-${types[0].toLowerCase()}_${types[1].toLowerCase()}`;
+    }
+    // Sinon, retourne le class pour un seul type.
+    return `type-${types[0].toLowerCase()}`;
+  }
   // Méthode pour gérer le clic sur une carte Pokémon.
   goToPokemonDetails(pokemonId: number): void {
     console.log(pokemonId); // Ajoutez cette ligne pour déboguer

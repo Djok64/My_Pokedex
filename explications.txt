@@ -1,3 +1,17 @@
+// Le routerLink
+
+Dans Angular, le routage permet de naviguer d'une vue à une autre sans recharger la page. Pour que le routage fonctionne, Angular doit connaître les chemins (routes) et les composants associés à ces chemins. Voici ce que nous avons fait :
+
+Configuration des Routes : Nous avons défini un tableau routes qui associe des chemins à des composants. Cela indique à Angular quel composant charger lorsqu'un utilisateur navigue vers un chemin donné.
+
+Initialisation du Routage : Dans une application Angular classique, le RouterModule est utilisé pour initialiser le routage, mais dans le mode standalone, nous utilisons provideRouter(routes) pour passer notre tableau de routes à la configuration de l'application Angular. Cela enregistre les routes avec le système de routage d'Angular.
+
+Utilisation de routerLink : La directive routerLink permet de créer des liens de navigation dans les templates HTML. Pour l'utiliser dans un composant standalone, nous devons importer RouterLinkWithHref.
+
+Navigation Programmée : Nous avons utilisé le service Router pour naviguer de manière programmée. Cela nous a permis de déclencher la navigation en réponse à des événements autres que les clics sur les liens, comme le clic sur un bouton.
+
+Standalone Components : En mode standalone, chaque composant doit déclarer explicitement toutes ses dépendances. C'est pourquoi nous avons dû importer RouterLinkWithHref directement dans le NavbarComponent
+
 //Explication du proxy de proxy.conf.json
 
 {

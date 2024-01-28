@@ -1,0 +1,133 @@
+.pokemon-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: 20px;
+  margin-top: 100px;
+  background-color: white;
+}
+
+.pokemon-card {
+  cursor: pointer;
+  border-radius: 20px;
+  overflow: hidden;
+  width: 200px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  text-align: center;
+  margin-bottom: 20px;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.pokemon-card:hover {
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
+  transform: translateY(-5px);
+}
+
+.pokemon-card h2 {
+  font-size: 1.5em;
+  margin: 0;
+  padding: 10px;
+  color: white;
+  font-weight: bold;
+  text-transform: capitalize;
+  font-family: "Pokémon Solid", sans-serif;
+}
+
+.pokemon-card img {
+  width: 100%;
+  display: block;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.pokemon-card p {
+  margin: 0;
+  padding: 10px;
+  color: white;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+  gap: 5%;
+}
+
+.pagination button {
+  background-color: white;
+  height: 20px;
+  border: none;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.pagination img {
+  height: 50px;
+  background-color: white;
+}
+
+.pagination button:hover {
+  background-color: #a00a24;
+}
+
+.pagination button:disabled {
+  background-color: #eee;
+  color: #aaa;
+  cursor: default;
+}
+
+.type-fire {
+  background-color: #f08030;
+}
+.type-water {
+  background-color: #6890f0;
+}
+.type-grass {
+  background-color: #78c850;
+}
+.type-bug {
+  background-color: #a8b820;
+}
+
+.type-bug_flying {
+  background: linear-gradient(135deg, #a8b820 40%, #a890f0 60%);
+}
+
+.type-normal_flying {
+  background: linear-gradient(135deg, #a8a878 40%, #a890f0 60%);
+}
+
+.type-grass_poison {
+  background: linear-gradient(135deg, #78c850 40%, #a040a0 60%);
+}
+
+.type-ground {
+  background-color: #e0c068;
+}
+
+.type-bug_poison {
+  background: linear-gradient(135deg, #a8b820 40%, #a040a0 60%);
+}
+
+.type-normal {
+  background-color: #a8a878;
+}
+.type-fire_flying {
+  background: linear-gradient(135deg, #f08030 40%, #a890f0 60%);
+}
+.type-fairy {
+  background-color: #ee99ac;
+}
+.type-normal_fairy {
+  background: linear-gradient(135deg, #a8a878 40%, #ee99ac 60%);
+}
+.type-poison {
+  background-color: #a040a0;
+}
+.type-bug_grass {
+  background: linear-gradient(135deg, #a8b820 40%, #78c850 60%);
+}
+.type-poison_flying {
+  background: linear-gradient(135deg, #a040a0 40%, #a890f0 60%);
+}

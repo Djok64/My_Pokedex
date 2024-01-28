@@ -4,7 +4,7 @@ import { Routes } from '@angular/router';
 // Importation des composants utilisés dans les routes.
 import { PokemonListComponent } from './pokemon-list/pokemon-list.component';
 import { PokemonDetailComponent } from './pokemon-detail/pokemon-detail.component';
-
+import { NavbarComponent } from './navbar/navbar.component';
 // Définition des routes de l'application.
 export const routes: Routes = [
   // Route pour la racine ('/'). Lorsque l'utilisateur visite la racine, PokemonListComponent est affiché.

@@ -5,13 +5,15 @@ import { provideRouter } from '@angular/router'; // Importe provideRouter pour l
 import { routes } from './app.routes'; // Importe les routes définies dans app.routes.ts.
 import { CommonModule } from '@angular/common'; // Importe CommonModule, souvent utilisé pour les fonctionnalités communes comme les directives ngIf, ngFor, etc.
 import { PokemonListComponent } from './pokemon-list/pokemon-list.component'; // Importe le composant PokemonListComponent.
-
+import { NavbarComponent } from './navbar/navbar.component'; //importe la navbar pour naviguer sur le site
 // Définition de la configuration de l'application.
 export const appConfig: ApplicationConfig = {
   // Fournit un tableau de providers (fournisseurs de services et configurations).
   providers: [
+    provideHttpClient(),
     provideRouter(routes), // Configure le routeur avec les routes définies dans app.routes.ts.
-    provideHttpClient(), // Configure le service HttpClient pour les requêtes HTTP.
+
+    // Configure le service HttpClient pour les requêtes HTTP.
   ],
 };
 
