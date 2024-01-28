@@ -7,7 +7,9 @@ import { forkJoin, Observable } from 'rxjs';
 import { switchMap, map } from 'rxjs/operators';
 
 // Définition de l'interface Pokemon pour typer les données de Pokémon.
-interface Pokemon {
+//export permet de s'en servir dans un autre fichier ou on importera pokemon.service.ts
+export interface Pokemon {
+  id: number;
   name: string;
   image: string;
   types: string[];
@@ -49,25 +51,21 @@ export class PokemonService {
 
   // Méthode pour obtenir tous les détails des Pokémon.
   getAllPokemonDetails(): Observable<Pokemon[]> {
-    // Utilisation de getPokemonList pour obtenir la liste des Pokémon.
     return this.getPokemonList().pipe(
-      // Utilisation de switchMap pour transformer les données reçues.
       switchMap((pokemonListData) => {
         // Création d'un tableau de requêtes pour obtenir les détails de chaque Pokémon.
-        const results = pokemonListData.results.map((pokemon) =>
-          this.getPokemonDetails(this.getPokemonIdFromUrl(pokemon.url))
-        );
-        // Utilisation de forkJoin pour attendre que toutes les requêtes soient terminées.
-        return forkJoin(results);
-      }),
-      // Utilisation de map pour transformer les données reçues en un tableau de Pokémon.
-      map((pokemonData: PokemonDetails[]) => {
-        // Transformation des données en un format plus utilisable.
-        return pokemonData.map((data) => ({
-          name: data.name,
-          image: data.sprites.front_default,
-          types: data.types.map((type) => type.type.name),
-        }));
+        const results = pokemonListData.results.map((pokemon) => {
+          const pokemonId = this.getPokemonIdFromUrl(pokemon.url);
+          return this.getPokemonDetails(pokemonId).pipe(
+            map((details) => ({
+              id: pokemonId,
+              name: details.name,
+              image: details.sprites.front_default,
+              types: details.types.map((type) => type.type.name),
+            }))
+          );
+        });
+        return forkJoin(results); // Exécution de toutes les requêtes en parallèle.
       })
     );
   }

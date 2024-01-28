@@ -18,3 +18,31 @@ Explication :
 "changeOrigin": true : Ce paramètre est crucial pour les requêtes CORS. Il modifie l'origine de l'hôte de la requête pour correspondre à la cible du proxy. Cela peut aider à éviter les problèmes liés aux restrictions de la politique de la même origine (same-origin policy).
 
 Ce fichier est généralement utilisé en développement pour contourner les restrictions CORS ou pour simuler un environnement où le frontend et le backend sont servis depuis le même domaine.
+
+//Accès aux Interfaces Définies dans le Même Fichier
+
+interface : structure model de données dans notre exemple on decrit lobjet PokemonDetails 
+
+Dans TypeScript, si vous définissez une interface dans un fichier, cette interface est accessible à toutes les classes et fonctions définies dans le même fichier. C'est pourquoi vous pouvez utiliser PokemonDetails directement dans les méthodes de PokemonService.
+
+exemple : // pokemon.service.ts
+
+interface PokemonDetails {
+  // Structure de l'interface...
+}
+
+@Injectable({
+  providedIn: 'root',
+})
+export class PokemonService {
+  // ...
+
+  getPokemonDetails(id: number): Observable<PokemonDetails> {
+    // ...
+  }
+
+  // ...
+}
+
+En résumé, vous pouvez accéder à PokemonDetails dans PokemonService sans l'exporter car ils sont dans le même fichier. Si vous avez besoin de PokemonDetails en dehors de pokemon.service.ts, vous devez l'exporter et l'importer là où vous en avez besoin.
+
