@@ -1,13 +1,30 @@
 <!-- Template pour afficher la liste des Pokémon. -->
-<div
-  *ngFor="let pokemon of pokemonList"
-  (click)="goToPokemonDetails(pokemon.id)"
->
-  <!-- Boucle sur chaque Pokémon et affichage de ses détails. -->
-  <h2>{{ pokemon.name }}</h2>
-  <!-- Affiche le nom du Pokémon. -->
-  <img [src]="pokemon.image" alt="{{ pokemon.name }} Image" />
-  <!-- Affiche l'image du Pokémon. -->
-  <p>Type(s): {{ pokemon.types.join(", ") }}</p>
-  <!-- Affiche les types du Pokémon. -->
+<div class="pokemon-list">
+  <!-- Utilisation de *ngFor pour itérer sur chaque Pokémon dans le tableau paginatedPokemon. -->
+  <div
+    *ngFor="let pokemon of paginatedPokemon"
+    (click)="goToPokemonDetails(pokemon.id)"
+  >
+    <!-- Boucle sur chaque Pokémon et affichage de ses détails. -->
+    <h2>{{ pokemon.name }}</h2>
+    <!-- Affiche le nom du Pokémon. -->
+    <img [src]="pokemon.image" alt="{{ pokemon.name }} Image" />
+    <!-- Utilisation de la syntaxe [src] pour définir dynamiquement la source de l'image en fonction du Pokémon. -->
+    <!-- Affiche l'image du Pokémon. -->
+    <p>Type(s): {{ pokemon.types.join(", ") }}</p>
+    <!-- Affiche les types du Pokémon en utilisant la méthode join() pour les concaténer avec une virgule et un espace. -->
+  </div>
+</div>
+
+<div class="pagination">
+  <button (click)="previousPage()" [disabled]="currentPage === 1">
+    Précédent
+  </button>
+  <!-- Utilisation de (click) pour déclencher la méthode previousPage() lorsque le bouton est cliqué. -->
+  <!-- Utilisation de [disabled] pour désactiver le bouton s'il n'y a pas de page précédente. -->
+  <button (click)="nextPage()" [disabled]="currentPage === totalPages">
+    Suivant
+  </button>
+  <!-- Utilisation de (click) pour déclencher la méthode nextPage() lorsque le bouton est cliqué. -->
+  <!-- Utilisation de [disabled] pour désactiver le bouton s'il n'y a pas de page suivante. -->
 </div>
