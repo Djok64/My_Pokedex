@@ -1,5 +1,13 @@
-<div *ngFor="let pokemon of pokemonList">
+<!-- Template pour afficher la liste des Pokémon. -->
+<div
+  *ngFor="let pokemon of pokemonList"
+  (click)="goToPokemonDetails(pokemon.id)"
+>
+  <!-- Boucle sur chaque Pokémon et affichage de ses détails. -->
   <h2>{{ pokemon.name }}</h2>
+  <!-- Affiche le nom du Pokémon. -->
   <img [src]="pokemon.image" alt="{{ pokemon.name }} Image" />
+  <!-- Affiche l'image du Pokémon. -->
   <p>Type(s): {{ pokemon.types.join(", ") }}</p>
+  <!-- Affiche les types du Pokémon. -->
 </div>
