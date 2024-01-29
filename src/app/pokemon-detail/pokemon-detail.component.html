@@ -1,0 +1,38 @@
+<!-- Conteneur principal du composant de détail du Pokémon -->
+<div class="component-detail">
+  <!-- Vérifie si l'objet 'pokemon' est défini (non null) avant d'afficher le contenu -->
+  <div *ngIf="pokemon" class="pokemon-details">
+    <!-- Affiche le nom du Pokémon. Utilisez [ngClass] pour appliquer la classe de couleur basée sur le type du Pokémon -->
+    <h2 [ngClass]="typeColorClass">{{ pokemon.name }}</h2>
+
+    <!-- Affiche l'image principale du Pokémon. Utilise [ngClass] pour appliquer des styles basés sur les types du Pokémon -->
+    <img
+      [src]="pokemon.sprites.front_default"
+      alt="{{ pokemon.name }} Image"
+      [ngClass]="getTypeClass(pokemon.types)"
+    />
+
+    <!-- Conteneur pour les icônes des types du Pokémon -->
+    <div class="pokemon-types">
+      <!-- Boucle sur chaque type du Pokémon -->
+      <ng-container *ngFor="let type of pokemon.types">
+        <!-- Affiche une icône pour chaque type. Construit le chemin de l'icône dynamiquement basé sur le nom du type -->
+        <img
+          [src]="'../../assets/' + type.type.name + '.png'"
+          [alt]="type.type.name"
+          class="type-icon"
+          [ngClass]="'type-icon ' + 'bg-' + type.type.name.toLowerCase()"
+        />
+      </ng-container>
+    </div>
+  </div>
+
+  <!-- Section pour le retour à la liste principale des Pokémon -->
+  <div class="pokedex-retour">
+    <!-- Lien de retour à la page principale ou à la liste des Pokémon -->
+    <a routerLink="/">
+      <!-- Image servant de bouton de retour. Pointe vers l'image de retour au pokedex -->
+      <img src="../../assets/retourPokedex.png" alt="Logo Retour au pokedex" />
+    </a>
+  </div>
+</div>
