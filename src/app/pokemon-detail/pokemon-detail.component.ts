@@ -6,11 +6,13 @@ import { ActivatedRoute } from '@angular/router'; // Importe ActivatedRoute pour
 import { PokemonService } from '../pokemon.service'; // Importe le service PokemonService pour récupérer les données des Pokémon.
 import { CommonModule } from '@angular/common'; // Importe CommonModule, qui fournit des directives comme ngIf et ngFor.
 
+import { Router, RouterLinkWithHref } from '@angular/router';
+
 // Décorateur Component pour définir les métadonnées du composant.
 @Component({
   selector: 'app-pokemon-detail', // Sélecteur CSS pour utiliser ce composant dans le HTML.
   standalone: true, // Indique que le composant est autonome et ne nécessite pas d'être déclaré dans un module Angular.
-  imports: [CommonModule], // Importe CommonModule pour utiliser ses fonctionnalités dans le template.
+  imports: [CommonModule, RouterLinkWithHref], // Importe CommonModule pour utiliser ses fonctionnalités dans le template. et RouterLinkWithHref pour licone pokedex retour
   templateUrl: './pokemon-detail.component.html', // Chemin vers le fichier de template HTML du composant.
   styleUrls: ['./pokemon-detail.component.css'], // Chemin vers le fichier CSS pour les styles du composant.
 })

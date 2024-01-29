@@ -1,9 +1,16 @@
-<div *ngIf="pokemon" class="pokemon-details">
-  <h2>{{ pokemon.name }}</h2>
-  <img
-    [src]="pokemon.sprites.front_default"
-    alt="{{ pokemon.name }} Image"
-    [ngClass]="getTypeClass(pokemon.types)"
-  />
-  <p>Type(s): {{ typesAsString }}</p>
+<div class="component-detail">
+  <div *ngIf="pokemon" class="pokemon-details">
+    <h2>{{ pokemon.name }}</h2>
+    <img
+      [src]="pokemon.sprites.front_default"
+      alt="{{ pokemon.name }} Image"
+      [ngClass]="getTypeClass(pokemon.types)"
+    />
+    <p>Type(s): {{ typesAsString }}</p>
+  </div>
+  <div class="pokedex-retour">
+    <a routerLink="/">
+      <img src="../../assets/retourPokedex.png" alt="Logo Retour au pokedex"
+    /></a>
+  </div>
 </div>
