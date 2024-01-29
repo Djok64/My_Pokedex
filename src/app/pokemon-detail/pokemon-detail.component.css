@@ -1,0 +1,25 @@
+.pokemon-details {
+  text-align: center;
+  background-color: #708090;
+  padding: 20px;
+}
+
+.pokemon-details h2 {
+  color: white;
+  text-transform: capitalize;
+  margin-bottom: 20px;
+  font-size: 2.5em; /* Augmenter la taille du texte */
+}
+
+.pokemon-details img {
+  max-width: 80%; /* Augmenter la taille de l'image */
+  max-height: 500px; /* Limiter la hauteur maximale */
+  border-radius: 15px;
+  box-shadow: 0px 0px 15px #333;
+}
+
+.pokemon-details p {
+  font-size: 1.4em;
+  margin-top: 20px;
+  color: #f3f3f3;
+}

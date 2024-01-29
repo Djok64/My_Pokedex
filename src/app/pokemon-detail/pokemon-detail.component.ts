@@ -23,7 +23,12 @@ export class PokemonDetailComponent implements OnInit {
     private pokemonService: PokemonService, // Injecte le service PokemonService.
     private route: ActivatedRoute // Injecte ActivatedRoute pour accéder aux paramètres de l'URL.
   ) {}
-
+  getTypeClass(types: string[] | string) {
+    if (Array.isArray(types) && types.length === 2) {
+      return `type-${types[0].toLowerCase()}_${types[1].toLowerCase()}`;
+    }
+    return `type-${types[0].toLowerCase()}`;
+  }
   // Méthode ngOnInit appelée après la création du composant.
   ngOnInit(): void {
     const id = this.route.snapshot.params['id']; // Récupère l'ID du Pokémon à partir de l'URL.
