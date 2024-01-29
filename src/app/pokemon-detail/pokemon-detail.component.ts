@@ -17,49 +17,48 @@ import { Router, RouterLinkWithHref } from '@angular/router';
   styleUrls: ['./pokemon-detail.component.css'], // Chemin vers le fichier CSS pour les styles du composant.
 })
 export class PokemonDetailComponent implements OnInit {
-  pokemon: any = null; // Variable type any pour stocker les détails du Pokémon récupérés.
-  typesAsString: string = ''; // Ajout varible et  d'une nouvelle propriété pour les types
+  pokemon: any = null; // Stocke les détails du Pokémon récupéré par le service.
+  typesAsString: string = ''; // Stocke les types du Pokémon sous forme de chaîne de caractères.
+  typeColorClass: string = ''; // Ajoutez cette propriété pour stocker la classe de couleur du type principal
 
-  // Constructeur pour injecter les dépendances.
+  // Le constructeur pour injecter les dépendances dont le composant a besoin.
   constructor(
-    private pokemonService: PokemonService, // Injecte le service PokemonService.
-    private route: ActivatedRoute // Injecte ActivatedRoute pour accéder aux paramètres de l'URL.
+    private pokemonService: PokemonService, // Le service qui fournira les données des Pokémon.
+    private route: ActivatedRoute // Pour accéder aux paramètres de l'URL, ici pour obtenir l'ID du Pokémon.
   ) {}
 
-  // Méthode ngOnInit appelée après la création du composant.
+  // La méthode ngOnInit est un hook du cycle de vie qui est appelé après la création du composant.
   ngOnInit(): void {
-    const id = this.route.snapshot.params['id']; // Récupère l'ID du Pokémon à partir de l'URL.
+    // Récupère l'ID du Pokémon à partir de l'URL.
+    const id = this.route.snapshot.params['id'];
 
-    // Appelle le service PokemonService pour obtenir les détails du Pokémon.
+    // Utilise le service PokemonService pour obtenir les détails du Pokémon avec l'ID spécifié.
     this.pokemonService.getPokemonDetails(id).subscribe((data: any) => {
-      this.pokemon = data; // Stocke les détails du Pokémon dans la propriété pokemon.
+      this.pokemon = data; // Stocke les données dans la propriété pokemon du composant.
+      // Transforme les types du Pokémon en une chaîne de caractères séparée par des virgules.
       this.typesAsString = data.types
         .map((t: { type: { name: any } }) => t.type.name)
-        .join(', '); // Transformation des types en chaîne de caractères
-      console.log(data);
+        .join(', ');
+      // Détermine la classe de couleur pour le nom du Pokémon en fonction du premier type.
+      this.typeColorClass = this.getTypeClass(data.types);
     });
   }
-  getTypeClass(types: any) {
-    // Cette ligne vérifie si la variable 'types' est bien définie et contient au moins un élément.
-    // 'types' est supposé être un tableau contenant les types du Pokémon.
+
+  // Retourne une classe CSS basée sur les types du Pokémon.
+  getTypeClass(types: any): string {
     if (types && types.length > 0) {
-      // Si le Pokémon a deux types (par exemple, 'fire' et 'flying'), cette condition sera vraie.
       if (types.length === 2) {
-        // Retourne une chaîne de caractères qui combine les deux types.
-        // Par exemple, si les types sont 'fire' et 'flying', cela retournera 'type-fire_flying'.
-        // 'toLowerCase()' est utilisé pour s'assurer que le nom du type est en minuscules.
+        // Si deux types sont présents, combine les deux pour former le nom de la classe.
         return `type-${types[0].type.name.toLowerCase()}_${types[1].type.name.toLowerCase()}`;
       }
-
-      // Si le Pokémon a seulement un type, cette partie du code sera exécutée.
-      // Retourne une chaîne de caractères pour le seul type du Pokémon.
-      // Par exemple, si le type est 'water', cela retournera 'type-water'.
+      // Si un seul type est présent, utilise ce type pour former le nom de la classe.
       return `type-${types[0].type.name.toLowerCase()}`;
     }
-
-    // Si la variable 'types' n'est pas définie ou est vide, retourne une chaîne vide.
-    // Cela peut servir à éviter des erreurs si 'types' est indéfini.
+    // Si aucun type n'est défini, retourne une chaîne vide pour éviter les erreurs.
     return '';
   }
 }
-//Ce composant récupère l'ID du Pokémon à partir de l'URL (via ActivatedRoute) et utilise cet ID pour demander les détails du Pokémon au service PokemonService. Les détails récupérés sont ensuite stockés dans la propriété pokemon du composant, qui peut être utilisée dans le template HTML pour afficher ces détails.
+
+// Ce composant est un exemple typique d'un composant Angular qui récupère des données à partir d'un service (PokemonService)
+// et les affiche dans un template. La méthode ngOnInit est utilisée pour initialiser le composant,
+// notamment en récupérant les données des Pokémon dès que le composant est créé.

@@ -15,7 +15,7 @@
 }
 
 .navbar-logo {
-  height: 80px; /* Ajustez la taille selon vos besoins */
+  height: 80px;
   padding: 10px;
   width: auto;
   margin-bottom: 30px;
@@ -26,20 +26,20 @@
   text-decoration: none;
   font-size: 1.5em;
   padding: 10px;
-  font-family: "Roboto", sans-serif; /* Police secondaire pour le texte */
-  transition: background-color 0.3s; /* Transition pour effet de survol */
+  font-family: "Roboto", sans-serif;
+  transition: background-color 0.3s;
 }
 
 .navbar-link:hover {
-  background-color: rgba(255, 255, 255, 0.2); /* Effet de survol */
+  background-color: rgba(255, 255, 255, 0.2);
 }
 .navbar-titre {
   height: 200px;
 }
 h1 {
   font-size: 2em;
-  font-family: "Pokémon Solid", sans-serif; /* Police principale pour les titres */
-  margin: 0; /* Enlève la marge par défaut */
+  font-family: "Pokémon Solid", sans-serif;
+  margin: 0;
 }
 
 /* Responsive navbar */
