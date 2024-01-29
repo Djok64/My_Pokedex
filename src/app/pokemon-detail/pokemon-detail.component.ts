@@ -6,37 +6,59 @@ import { ActivatedRoute } from '@angular/router'; // Importe ActivatedRoute pour
 import { PokemonService } from '../pokemon.service'; // Importe le service PokemonService pour récupérer les données des Pokémon.
 import { CommonModule } from '@angular/common'; // Importe CommonModule, qui fournit des directives comme ngIf et ngFor.
 
+import { Router, RouterLinkWithHref } from '@angular/router';
+
 // Décorateur Component pour définir les métadonnées du composant.
 @Component({
   selector: 'app-pokemon-detail', // Sélecteur CSS pour utiliser ce composant dans le HTML.
   standalone: true, // Indique que le composant est autonome et ne nécessite pas d'être déclaré dans un module Angular.
-  imports: [CommonModule], // Importe CommonModule pour utiliser ses fonctionnalités dans le template.
+  imports: [CommonModule, RouterLinkWithHref], // Importe CommonModule pour utiliser ses fonctionnalités dans le template. et RouterLinkWithHref pour licone pokedex retour
   templateUrl: './pokemon-detail.component.html', // Chemin vers le fichier de template HTML du composant.
   styleUrls: ['./pokemon-detail.component.css'], // Chemin vers le fichier CSS pour les styles du composant.
 })
 export class PokemonDetailComponent implements OnInit {
-  pokemon: any = null; // Variable type any pour stocker les détails du Pokémon récupérés.
-  typesAsString: string = ''; // Ajout varible et  d'une nouvelle propriété pour les types
+  pokemon: any = null; // Stocke les détails du Pokémon récupéré par le service.
+  typesAsString: string = ''; // Stocke les types du Pokémon sous forme de chaîne de caractères.
+  typeColorClass: string = ''; // Ajoutez cette propriété pour stocker la classe de couleur du type principal
 
-  // Constructeur pour injecter les dépendances.
+  // Le constructeur pour injecter les dépendances dont le composant a besoin.
   constructor(
-    private pokemonService: PokemonService, // Injecte le service PokemonService.
-    private route: ActivatedRoute // Injecte ActivatedRoute pour accéder aux paramètres de l'URL.
+    private pokemonService: PokemonService, // Le service qui fournira les données des Pokémon.
+    private route: ActivatedRoute // Pour accéder aux paramètres de l'URL, ici pour obtenir l'ID du Pokémon.
   ) {}
 
-  // Méthode ngOnInit appelée après la création du composant.
+  // La méthode ngOnInit est un hook du cycle de vie qui est appelé après la création du composant.
   ngOnInit(): void {
-    const id = this.route.snapshot.params['id']; // Récupère l'ID du Pokémon à partir de l'URL.
+    // Récupère l'ID du Pokémon à partir de l'URL.
+    const id = this.route.snapshot.params['id'];
 
-    // Appelle le service PokemonService pour obtenir les détails du Pokémon.
+    // Utilise le service PokemonService pour obtenir les détails du Pokémon avec l'ID spécifié.
     this.pokemonService.getPokemonDetails(id).subscribe((data: any) => {
-      this.pokemon = data; // Stocke les détails du Pokémon dans la propriété pokemon.
+      this.pokemon = data; // Stocke les données dans la propriété pokemon du composant.
+      // Transforme les types du Pokémon en une chaîne de caractères séparée par des virgules.
       this.typesAsString = data.types
         .map((t: { type: { name: any } }) => t.type.name)
-        .join(', '); // Transformation des types en chaîne de caractères
-      console.log(data);
+        .join(', ');
+      // Détermine la classe de couleur pour le nom du Pokémon en fonction du premier type.
+      this.typeColorClass = this.getTypeClass(data.types);
     });
+  }
+
+  // Retourne une classe CSS basée sur les types du Pokémon.
+  getTypeClass(types: any): string {
+    if (types && types.length > 0) {
+      if (types.length === 2) {
+        // Si deux types sont présents, combine les deux pour former le nom de la classe.
+        return `type-${types[0].type.name.toLowerCase()}_${types[1].type.name.toLowerCase()}`;
+      }
+      // Si un seul type est présent, utilise ce type pour former le nom de la classe.
+      return `type-${types[0].type.name.toLowerCase()}`;
+    }
+    // Si aucun type n'est défini, retourne une chaîne vide pour éviter les erreurs.
+    return '';
   }
 }
 
-//Ce composant récupère l'ID du Pokémon à partir de l'URL (via ActivatedRoute) et utilise cet ID pour demander les détails du Pokémon au service PokemonService. Les détails récupérés sont ensuite stockés dans la propriété pokemon du composant, qui peut être utilisée dans le template HTML pour afficher ces détails.
+// Ce composant est un exemple typique d'un composant Angular qui récupère des données à partir d'un service (PokemonService)
+// et les affiche dans un template. La méthode ngOnInit est utilisée pour initialiser le composant,
+// notamment en récupérant les données des Pokémon dès que le composant est créé.

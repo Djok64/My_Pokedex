@@ -4,6 +4,8 @@
   <div
     *ngFor="let pokemon of paginatedPokemon"
     (click)="goToPokemonDetails(pokemon.id)"
+    (keyup.enter)="goToPokemonDetails(pokemon.id)"
+    tabindex="0"
     [ngClass]="getTypeClass(pokemon.types)"
     class="pokemon-card"
   >
@@ -13,8 +15,16 @@
     <img [src]="pokemon.image" alt="{{ pokemon.name }} Image" />
     <!-- Utilisation de la syntaxe [src] pour définir dynamiquement la source de l'image en fonction du Pokémon. -->
     <!-- Affiche l'image du Pokémon. -->
-    <p>Type(s): {{ pokemon.types.join(", ") }}</p>
-    <!-- Affiche les types du Pokémon en utilisant la méthode join() pour les concaténer avec une virgule et un espace. -->
+    <!-- Conteneur pour les icônes des types du Pokémon -->
+    <div class="pokemon-types">
+      <!-- Boucle sur chaque type du Pokémon -->
+      <img
+        *ngFor="let type of pokemon.types"
+        [src]="'../../assets/' + type + '.png'"
+        [alt]="type"
+        class="type-icon"
+      />
+    </div>
   </div>
 </div>
 

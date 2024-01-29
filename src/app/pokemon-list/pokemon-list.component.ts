@@ -71,11 +71,13 @@ export class PokemonListComponent implements OnInit {
   }
   getTypeClass(types: string[] | string) {
     // Vérifie si le Pokémon a deux types
-    if (types.length === 2) {
+    if (Array.isArray(types) && types.length === 2) {
       return `type-${types[0].toLowerCase()}_${types[1].toLowerCase()}`;
     }
     // Sinon, retourne le class pour un seul type.
-    return `type-${types[0].toLowerCase()}`;
+    return `type-${
+      Array.isArray(types) ? types[0].toLowerCase() : types.toLowerCase()
+    }`;
   }
   // Méthode pour gérer le clic sur une carte Pokémon.
   goToPokemonDetails(pokemonId: number): void {
