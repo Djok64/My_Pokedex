@@ -1,12 +1,16 @@
 /* Style général de la page de détails */
 .pokemon-details {
+  margin: 0 auto;
+  width: 50%;
+  max-width: 800px;
   text-align: center;
   padding: 40px 20px;
   border-radius: 15px;
   box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.5);
   margin: 20px auto;
-  max-width: 500px; /* Limite la largeur maximale du conteneur */
-  background-color: #f0f0f0; /* Fond général de la page */
+  max-width: 100%; /* S'assure que le conteneur n'est pas plus large que l'écran */
+  background-color: #f0f0f0;
+  overflow-x: hidden;
 }
 
 /* Style du titre */
@@ -129,4 +133,9 @@
 
 .type-water_psychic {
   background: linear-gradient(135deg, #6890f0 40%, #f85888 60%);
+}
+@media (max-width: 768px) {
+  .pokemon-details {
+    width: 100%;
+  }
 }
