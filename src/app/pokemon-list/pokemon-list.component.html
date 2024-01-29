@@ -4,6 +4,8 @@
   <div
     *ngFor="let pokemon of paginatedPokemon"
     (click)="goToPokemonDetails(pokemon.id)"
+    (keyup.enter)="goToPokemonDetails(pokemon.id)"
+    tabindex="0"
     [ngClass]="getTypeClass(pokemon.types)"
     class="pokemon-card"
   >
