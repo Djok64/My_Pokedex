@@ -42,6 +42,10 @@
   color: #444;
   margin-top: 10px;
 }
+
+.pokemon-types {
+  border: none;
+}
 .type-fire {
   background-color: #f08030;
 }

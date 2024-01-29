@@ -71,7 +71,14 @@
 .pagination button:disabled {
   display: none;
 }
-
+.pokemon-types {
+  display: flex;
+  justify-content: center;
+}
+.pokemon-types img {
+  width: 40%;
+  vertical-align: middle;
+}
 .type-fire {
   background-color: #f08030;
 }

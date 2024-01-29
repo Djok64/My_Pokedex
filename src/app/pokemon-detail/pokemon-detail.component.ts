@@ -40,16 +40,26 @@ export class PokemonDetailComponent implements OnInit {
     });
   }
   getTypeClass(types: any) {
-    // Assurez-vous que types est bien défini et a au moins un élément.
+    // Cette ligne vérifie si la variable 'types' est bien définie et contient au moins un élément.
+    // 'types' est supposé être un tableau contenant les types du Pokémon.
     if (types && types.length > 0) {
-      // Si le Pokémon a deux types, combinez-les pour former le nom de la classe.
+      // Si le Pokémon a deux types (par exemple, 'fire' et 'flying'), cette condition sera vraie.
       if (types.length === 2) {
+        // Retourne une chaîne de caractères qui combine les deux types.
+        // Par exemple, si les types sont 'fire' et 'flying', cela retournera 'type-fire_flying'.
+        // 'toLowerCase()' est utilisé pour s'assurer que le nom du type est en minuscules.
         return `type-${types[0].type.name.toLowerCase()}_${types[1].type.name.toLowerCase()}`;
       }
-      // Sinon, utilisez le premier type.
+
+      // Si le Pokémon a seulement un type, cette partie du code sera exécutée.
+      // Retourne une chaîne de caractères pour le seul type du Pokémon.
+      // Par exemple, si le type est 'water', cela retournera 'type-water'.
       return `type-${types[0].type.name.toLowerCase()}`;
     }
-    return ''; // Retournez une chaîne vide si aucun type n'est défini.
+
+    // Si la variable 'types' n'est pas définie ou est vide, retourne une chaîne vide.
+    // Cela peut servir à éviter des erreurs si 'types' est indéfini.
+    return '';
   }
 }
 //Ce composant récupère l'ID du Pokémon à partir de l'URL (via ActivatedRoute) et utilise cet ID pour demander les détails du Pokémon au service PokemonService. Les détails récupérés sont ensuite stockés dans la propriété pokemon du composant, qui peut être utilisée dans le template HTML pour afficher ces détails.
