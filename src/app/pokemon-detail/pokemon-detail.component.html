@@ -1,9 +1,9 @@
 <div *ngIf="pokemon" class="pokemon-details">
-  <!-- Cette ligne vérifie si la variable "pokemon" est définie (non null ou non undefined) avant d'afficher le contenu à l'intérieur de cette balise div. -->
   <h2>{{ pokemon.name }}</h2>
-  <!-- Ici, nous affichons le nom du Pokémon à partir de la propriété "name" de l'objet "pokemon". -->
-  <img [src]="pokemon.sprites.front_default" alt="{{ pokemon.name }} Image" />
-  <!-- Nous utilisons la directive [src] pour définir dynamiquement la source de l'image. La source provient de la propriété "sprites.front_default" de l'objet "pokemon". L'attribut "alt" est utilisé pour une description textuelle de l'image. -->
+  <img
+    [src]="pokemon.sprites.front_default"
+    alt="{{ pokemon.name }} Image"
+    [ngClass]="getTypeClass(pokemon.types)"
+  />
   <p>Type(s): {{ typesAsString }}</p>
-  <!-- Nous affichons les types du Pokémon à partir de la variable "typesAsString". Cette variable doit être définie dans le composant TypeScript. -->
 </div>
