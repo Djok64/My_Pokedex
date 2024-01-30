@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "build": "ng build --configuration=production --base-href='/My_Pokedex/' && cp 404.html dist/My_Pokedex/",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
