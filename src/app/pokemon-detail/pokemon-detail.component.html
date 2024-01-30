@@ -18,7 +18,7 @@
       <ng-container *ngFor="let type of pokemon.types">
         <!-- Affiche une icône pour chaque type. Construit le chemin de l'icône dynamiquement basé sur le nom du type -->
         <img
-          [src]="'../../assets/' + type.type.name + '.png'"
+          [src]="'./assets/' + type.type.name + '.png'"
           [alt]="type.type.name"
           class="type-icon"
           [ngClass]="'type-icon ' + 'bg-' + type.type.name.toLowerCase()"
@@ -32,7 +32,7 @@
     <!-- Lien de retour à la page principale ou à la liste des Pokémon -->
     <a routerLink="/">
       <!-- Image servant de bouton de retour. Pointe vers l'image de retour au pokedex -->
-      <img src="../../assets/retourPokedex.png" alt="Logo Retour au pokedex" />
+      <img src="./assets/retourPokedex.png" alt="Logo Retour au pokedex" />
     </a>
   </div>
 </div>

@@ -20,7 +20,7 @@
       <!-- Boucle sur chaque type du Pokémon -->
       <img
         *ngFor="let type of pokemon.types"
-        [src]="'../../assets/' + type + '.png'"
+        [src]="'./assets/' + type + '.png'"
         [alt]="type"
         class="type-icon"
       />
@@ -31,7 +31,7 @@
 <div class="pagination">
   <button (click)="previousPage()" [disabled]="currentPage === 1">
     <img
-      src="../../assets/iconePrecedent.png"
+      src="./assets/iconePrecedent.png"
       alt="pokeball avec une fleche suivant"
     />
   </button>
@@ -39,7 +39,7 @@
   <!-- Utilisation de [disabled] pour désactiver le bouton s'il n'y a pas de page précédente. -->
   <button (click)="nextPage()" [disabled]="currentPage === totalPages">
     <img
-      src="../../assets/iconeSuivantdefi.png"
+      src="./assets/iconeSuivantdefi.png"
       alt="pokeball avec une fleche precedent"
     />
   </button>
