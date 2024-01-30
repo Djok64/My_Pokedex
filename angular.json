@@ -21,7 +21,7 @@
             "assets": ["src/favicon.ico", "src/assets"],
             "styles": ["src/styles.css"],
             "scripts": [],
-            "baseHref": "/My_Pokedex"
+            "baseHref": "/My_Pokedex/"
           },
           "configurations": {
             "production": {
