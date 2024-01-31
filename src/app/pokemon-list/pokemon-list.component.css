@@ -48,14 +48,15 @@
   gap: 5%;
 }
 .pagination button {
-  height: 20px;
+  margin-top: 60px;
+  height: 40px;
   border: none;
   color: #708090;
   cursor: pointer;
   transition: background-color 0.3s;
 }
 .pagination img {
-  height: 50px;
+  height: 70px;
   background-color: #708090;
 }
 .pagination button:disabled {
