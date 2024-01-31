@@ -4,7 +4,8 @@
 import { Component } from '@angular/core';
 import { Router, RouterOutlet } from '@angular/router'; // Importe RouterOutlet pour la navigation entre les routes.
 import { PokemonListComponent } from './pokemon-list/pokemon-list.component';
-import { NavbarComponent } from './navbar/navbar.component'; // Importe le composant PokemonListComponent.
+import { NavbarComponent } from './navbar/navbar.component';
+import { FooterComponent } from './footer/footer.component'; // Importe le composant PokemonListComponent.
 
 // Décorateur Component pour définir les métadonnées du composant.
 @Component({
@@ -12,7 +13,7 @@ import { NavbarComponent } from './navbar/navbar.component'; // Importe le compo
   standalone: true, // Importe RouterOutlet dans le composant, ce qui permet d'afficher les composants de route.
   templateUrl: './app.component.html', // Chemin vers le fichier de template HTML pour ce composant.
   styleUrls: ['./app.component.css'],
-  imports: [RouterOutlet, NavbarComponent],
+  imports: [RouterOutlet, NavbarComponent, FooterComponent],
 })
 export class AppComponent {
   title = 'MyPokedex'; // Propriété du composant, utilisée pour stocker le titre de l'application.

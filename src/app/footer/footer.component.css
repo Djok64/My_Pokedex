@@ -1,9 +1,32 @@
 .footer {
+  display: flex;
+  height: 100px;
+  justify-content: space-between;
+  align-items: center;
   background-color: #da0c32;
   color: white;
   text-align: center;
   padding: 10px 0;
-  position: absolute;
-  bottom: 0;
   width: 100%;
+}
+
+.footer p {
+  font-family: "Pokémon solid", sans-serif;
+  font-size: 1.5em;
+  padding-left: 30px;
+}
+
+#createur {
+  padding-right: 30px;
+  margin-left: auto;
+}
+
+.pokemon-dresseur {
+  height: 100px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.pokemon-footer {
+  height: 60px;
 }
