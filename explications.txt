@@ -191,3 +191,12 @@ return forkJoin(results); : Enfin, nous utilisons forkJoin pour exécuter toutes
 
 5.Template HTML : Le template HTML n'a pas été modifié, mais il est important de noter que le contenu de *ngFor utilise maintenant paginatedPokemon au lieu de pokemonList, ce qui garantit que seuls les Pokémon de la page courante sont affichés.
 
+
+Déploiement : 
+ 
+ modifié dans le package.json et dans angular. json  le script du build pour y mettre la bonne href et une option a modifié je regarderai dans les commit pour voir exactement
+ 
+ng build : pour créer notre dossier de déploiement 
+
+ ngh --dir=dist/My_Pokedex/browser : pour déployer avec le cli angular 
+
