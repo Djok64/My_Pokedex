@@ -5,7 +5,22 @@
   max-width: 100%;
 }
 body {
+  min-height: 100vh;
   background-color: #708090;
   max-width: 100%;
   overflow-x: hidden;
+}
+
+.footer-container {
+  margin-top: 50px;
+}
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Hauteur de la fenêtre de visualisation */
+}
+
+.navbar-container {
+  flex: 1; /* Le contenu principal prend tout l'espace disponible */
+  padding-bottom: 20px; /* Espace supplémentaire en bas si nécessaire */
 }

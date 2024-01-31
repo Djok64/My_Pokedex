@@ -34,7 +34,7 @@
 .pokemon-details img {
   margin: auto;
   display: block;
-  border-radius: 50%;
+  border-radius: 35%;
   box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.15);
   max-width: 100%;
   width: 40%;
