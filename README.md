@@ -1,4 +1,4 @@
-# MyPokedex
+# MyPokedex : Test technique   mise en place d'un frontend pour afficher dynamiquement les données récupérer via une API
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.1.1.
 
